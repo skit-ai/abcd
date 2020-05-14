@@ -116,6 +116,14 @@ pyparsing = ">=2.0.2"
 six = "*"
 
 [[package]]
+category = "main"
+description = "PlanOut is a framework for online field experimentation."
+name = "planout"
+optional = false
+python-versions = "*"
+version = "0.6.0"
+
+[[package]]
 category = "dev"
 description = "plugin and hook calling mechanisms for python"
 name = "pluggy"
@@ -193,7 +201,7 @@ dev = ["pytest", "pytest-timeout", "coverage", "tox", "sphinx", "pallets-sphinx-
 watchdog = ["watchdog"]
 
 [metadata]
-content-hash = "0e986f64930a1c21ba8ec0f43a6771df3bdbbbd4d7bd2201494ec5d6f838538f"
+content-hash = "88dc812ff285d6fdf7b3b0d95bb6c6cdfa2d3a57384ed6a83ec50f866aa5f9a3"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -265,6 +273,9 @@ more-itertools = [
 packaging = [
     {file = "packaging-20.3-py2.py3-none-any.whl", hash = "sha256:82f77b9bee21c1bafbf35a84905d604d5d1223801d639cf3ed140bd651c08752"},
     {file = "packaging-20.3.tar.gz", hash = "sha256:3c292b474fda1671ec57d46d739d072bfd495a4f51ad01a055121d81e952b7a3"},
+]
+planout = [
+    {file = "PlanOut-0.6.0.tar.gz", hash = "sha256:d3d961607bb5884bbadea9e78e4e5891ba819b26f26b128ca2cd4dc23de7c56f"},
 ]
 pluggy = [
     {file = "pluggy-0.13.1-py2.py3-none-any.whl", hash = "sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"},
