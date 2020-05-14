@@ -1,5 +1,7 @@
 #+TITLE: abcd
 
+[[CI][file:https://github.com/Vernacular-ai/abcd/workflows/CI/badge.svg?branch=master]]
+
 =abcd= is a simple [[https://facebook.github.io/planout/][planout]] based allocation server for online experiments.
 
 ** Usage
