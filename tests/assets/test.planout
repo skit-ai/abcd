@@ -1,0 +1,1 @@
+color = uniformChoice(choices=['red', 'blue'], unit=id);
