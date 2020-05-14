@@ -1,0 +1,4 @@
+[submodule "planout"]
+	path = planout
+	url = git@github.com:facebook/planout.git
+	branch = master
