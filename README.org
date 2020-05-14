@@ -1,3 +1,35 @@
 #+TITLE: abcd
 
-abcd stands for abcd.
+=abcd= is a simple [[https://facebook.github.io/planout/][planout]] based allocation server for online experiments.
+
+** Usage
+*** Installation
+=abcd= is not on pypi as of yet. You need to manually install from this
+repository.
+
+*** Workflow
+Write experiments in planout script, compile to json, and organize in
+directories specifying =namespaces=. Then run the server pointing to the
+directory.
+
+#+begin_quote
+Compiling planout script to json needs planout.js and can be used as following:
+
+=node ./planout/compiler/planout.js input.planout > output.json=
+#+end_quote
+
+As an example, try running the following which loads the =assets= namespace and a
+simple color selection experiment:
+
+#+begin_src shell
+poetry run abcd ./tests/
+#+end_src
+
+Then you can query for allocation using the following:
+
+#+begin_src shell :exports both :results output
+curl -X POST -H 'Content-type: application/json' --data '{"params":{"id": 223}}' http://localhost:8813/allocate/assets
+#+end_src
+
+#+RESULTS:
+: {"color":"blue"}
