@@ -15,21 +15,36 @@ Options:
 
 from docopt import docopt
 
-from abcd.experiment import load_experiments_from_dir
-from flask import Flask
+from abcd.experiment import load_defs_from_dir
+from flask import Flask, request
+from planout.experiment import SimpleInterpretedExperiment
 
 APP = Flask(__name__)
 
 
 @APP.route("/")
-def hello_world():
-    return "hello"
+def abcd():
+    return "abcd"
+
+
+@APP.route("/allocate/<namespace>", methods=["POST"])
+def allocate(namespace):
+    params = request.json.get("params")
+    exp = SimpleInterpretedExperiment(**params)
+
+    # TODO: Run all experiments
+    exp_def = APP.defs[namespace][0]
+
+    exp.name = exp_def.name
+    exp.script = exp_def.script
+
+    return exp.get_params()
 
 
 def main():
     args = docopt(__doc__)
 
     port = int(args["--port"])
-    experiments = load_experiments_from_dir(args["<experiments-dir>"])
+    APP.defs = load_defs_from_dir(args["<experiments-dir>"])
 
     APP.run(port=port)
