@@ -1,6 +1,11 @@
 from typing import List
 
 
+class MissingExperiment(Exception):
+    def __init__(self):
+        super().__init__()
+
+
 class UnderspecifiedInput(Exception):
     """
     Exception for situation when input to an experiment is underspecified.
