@@ -10,6 +10,7 @@ python = "^3.8"
 flask = "^1.1.2"
 docopt = "^0.6.2"
 planout = "^0.6.0"
+pydash = "^4.7.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.2"
