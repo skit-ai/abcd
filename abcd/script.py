@@ -28,7 +28,7 @@ def collect_script_operator(script: Union[Dict, List], operator: str) -> List[Di
     return nodes
 
 
-def script_inputs(script: Dict) -> List[str]:
+def script_input_vars(script: Dict) -> List[str]:
     """
     Return a list of vars which should be supplied as input to the given
     script.

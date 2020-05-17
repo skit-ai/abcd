@@ -16,7 +16,8 @@ Options:
 from docopt import docopt
 
 from abcd.experiment import load_defs_from_dir
-from flask import Flask, request
+from abcd.exceptions import UnderspecifiedInput
+from flask import Flask, request, jsonify
 from planout.experiment import SimpleInterpretedExperiment
 
 APP = Flask(__name__)
@@ -30,15 +31,25 @@ def abcd():
 @APP.route("/allocate/<namespace>", methods=["POST"])
 def allocate(namespace):
     params = request.json.get("params")
-    exp = SimpleInterpretedExperiment(**params)
-
     # TODO: Run all experiments
     exp_def = APP.defs[namespace][0]
 
+    missing_vars = set(exp_def.input_vars) - set(params.keys())
+    if missing_vars:
+        raise UnderspecifiedInput("Input is underspecified", sorted(missing_vars))
+
+    exp = SimpleInterpretedExperiment(**params)
     exp.name = exp_def.name
     exp.script = exp_def.script
 
     return exp.get_params()
+
+
+@APP.errorhandler(UnderspecifiedInput)
+def handle_underspecified_input(error):
+    response = jsonify(error.to_dict())
+    response.status_code = 422
+    return response
 
 
 def main():

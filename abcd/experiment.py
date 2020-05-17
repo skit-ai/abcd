@@ -7,6 +7,7 @@ from glob import glob
 from typing import Dict, List
 
 from abcd.types import ExperimentDef
+from abcd.script import script_input_vars
 
 
 def load_def(json_path: str) -> ExperimentDef:
@@ -17,7 +18,8 @@ def load_def(json_path: str) -> ExperimentDef:
     exp_name = os.path.basename(json_path).rsplit(".", 1)[0]
 
     with open(json_path) as fp:
-        return ExperimentDef(exp_name, json.load(fp))
+        script = json.load(fp)
+        return ExperimentDef(exp_name, script, script_input_vars(script))
 
 
 def load_defs_from_dir(directory: str) -> Dict[str, List[ExperimentDef]]:
