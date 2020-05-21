@@ -2,12 +2,10 @@
 abcd allocation server
 
 Usage:
-  abcd <experiments-dir> [--port=<port>]
+  abcd <experiments-db> [--port=<port>]
 
 Arguments:
-  <experiments-dir>    Directory to keep experiment files in. This directory
-                       has sub-directories specifying namepace and compiled
-                       planout files.
+  <experiments-db>    Sqlite database keeping experiment scripts in.
 
 Options:
   --port=<port>        Port for server [default: 8813]
@@ -16,7 +14,7 @@ Options:
 from docopt import docopt
 
 from abcd.exceptions import MissingExperiment, UnderspecifiedInput
-from abcd.experiment import load_defs_from_dir
+from abcd.experiment import load_defs_from_database
 from flask import Flask, jsonify, request
 from planout.experiment import SimpleInterpretedExperiment
 
@@ -67,6 +65,6 @@ def main():
     args = docopt(__doc__)
 
     port = int(args["--port"])
-    APP.defs = load_defs_from_dir(args["<experiments-dir>"])
+    APP.defs = load_defs_from_database(args["<experiments-db>"])
 
     APP.run(port=port)

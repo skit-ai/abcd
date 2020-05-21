@@ -1,12 +1,8 @@
-from abcd.experiment import load_def, load_defs_from_dir
-
-
-def test_def_loading():
-    assert load_def("./tests/assets/test.json")
+from abcd.experiment import load_defs_from_database
 
 
 def test_dir_loading():
-    defs = load_defs_from_dir("./tests/")
+    defs = load_defs_from_database("./tests/assets/db.sqlite")
 
-    assert list(defs.keys()) == ["assets"]
-    assert len(defs["assets"]) == 1
+    assert list(defs.keys()) == ["test"]
+    assert len(defs["test"]) == 1

@@ -1,5 +1,6 @@
-from abcd.experiment import load_def
+from abcd.experiment import load_defs_from_database
 
 
 def test_script_input_vars():
-    assert load_def("./tests/assets/test.json").input_vars == ["id"]
+    defs = load_defs_from_database("./tests/assets/db.sqlite")
+    assert defs["test"][0].input_vars == ["id"]
