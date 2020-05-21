@@ -15,9 +15,9 @@ Options:
 
 from docopt import docopt
 
+from abcd.exceptions import MissingExperiment, UnderspecifiedInput
 from abcd.experiment import load_defs_from_dir
-from abcd.exceptions import UnderspecifiedInput, MissingExperiment
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
 from planout.experiment import SimpleInterpretedExperiment
 
 APP = Flask(__name__)
@@ -25,7 +25,7 @@ APP = Flask(__name__)
 
 @APP.route("/")
 def abcd():
-    return "abcd"
+    return "efgh"
 
 
 @APP.route("/allocate/<namespace>", methods=["POST"])
